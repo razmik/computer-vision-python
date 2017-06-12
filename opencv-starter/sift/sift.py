@@ -35,16 +35,18 @@ Steps:
 import cv2
 import numpy as np
 
-# filepath = "images\cctv_mid_res.jpg".replace('\\', '/')
-filepath = "images\maxresdefault.jpg".replace('\\', '/')
+filepath = "images\cctv_mid_res.jpg".replace('\\', '/')  # 2128 keypoints
+# filepath = "images\maxresdefault.jpg".replace('\\', '/')  # 27126 keypoints
 
 img = cv2.imread(filepath)
 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 sift = cv2.xfeatures2d.SIFT_create()
 
-kp = sift.detect(gray, None)
+keypoints = sift.detect(gray, None)
 
-img = cv2.drawKeypoints(gray, kp, img)
+print(len(keypoints))
 
-cv2.imwrite('images\sift_keypoints.jpg', img)
+# img = cv2.drawKeypoints(gray, keypoints, img)
+#
+# cv2.imwrite('images\sift_keypoints.jpg', img)
